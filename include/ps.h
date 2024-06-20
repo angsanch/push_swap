@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/20 05:38:50 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/06/20 05:50:43 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ typedef struct pushswap_data
 
 int		initialize_ps(t_ps *ps);
 void	delete_ps(t_ps *ps);
+
+int		parse_input(t_ps *ps, int argc, char **argv);
+void	sort(t_ps *ps);
 
 #endif

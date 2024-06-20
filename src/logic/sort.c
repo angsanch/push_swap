@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 02:18:02 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/20 05:51:01 by angsanch         ###   ########.fr       */
+/*   Created: 2024/06/20 05:52:25 by angsanch          #+#    #+#             */
+/*   Updated: 2024/06/20 05:55:18 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ps.h"
+#include "../../include/ps.h"
 
-static void	end(t_ps *ps, int code)
+void	sort(t_ps *ps)
 {
-	delete_ps(ps);
-	if (code)
-		my_dprintf(2, "%s\n", "Error");
-	exit(code);
-}
-
-int	main(int argc, char **argv)
-{
-	t_ps	ps;
-
-	initialize_ps(&ps);
-	if (!parse_input(&ps, argc, argv))
-		end(&ps, 84);
-	sort(&ps);
-	end(&ps, 0);
+	(void)ps;
 }
