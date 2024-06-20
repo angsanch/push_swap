@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/20 05:50:43 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/06/20 07:03:49 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ typedef struct pushswap_data
 	t_list	b;
 }	t_ps;
 
+typedef struct pushswap_element
+{
+	long			value;
+	unsigned long	index;
+}	t_num;
+
 int		initialize_ps(t_ps *ps);
 void	delete_ps(t_ps *ps);
+t_num	*create_num(long n);
 
+int		create_stack(t_ps *ps, char **array);
 int		parse_input(t_ps *ps, int argc, char **argv);
+
 void	sort(t_ps *ps);
 
 #endif
