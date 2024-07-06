@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/20 07:03:49 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/06 17:37:58 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@
 # include "linked_list.h"
 # include "my_printf.h"
 
-typedef struct pushswap_data
-{
-	t_list	a;
-	t_list	b;
-}	t_ps;
-
 typedef struct pushswap_element
 {
 	long			value;
 	unsigned long	index;
 }	t_num;
+
+typedef struct pushswap_data
+{
+	t_list	a;
+	t_list	b;
+	t_num	**unsorted;
+}	t_ps;
 
 int		initialize_ps(t_ps *ps);
 void	delete_ps(t_ps *ps);

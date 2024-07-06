@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 06:24:22 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/20 07:17:08 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:15:01 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,39 +44,41 @@ static int	compare_values(void *num1, void *num2)
 	return (((t_num *)num1)->value - ((t_num *)num2)->value);
 }
 
-static int	add_indexes(t_list *list)
+static int	add_indexes(t_list *list, t_ps *ps)
 {
-	void			**unsorted;
 	t_num			**sorted;
+	int				status;
 	unsigned long	i;
 
-	unsorted = list_export(list, NULL);
-	if (unsorted == NULL)
+	ps->unsorted = (t_num **)list_export(list, NULL);
+	if (ps->unsorted == NULL)
 		return (0);
 	list_sort(list, &compare_values);
 	sorted = (t_num **)list_export(list, NULL);
 	if (sorted == NULL)
-	{
-		free(unsorted);
 		return (0);
-	}
 	i = 0;
+	status = 1;
 	while (i < list->len)
 	{
 		sorted[i]->index = i;
+		if (i > 0)
+			if (sorted[i]->value == sorted[i - 1]->value)
+				status = 0;
 		i ++;
 	}
-	list_import(list, unsorted);
-	free(unsorted);
+	list_import(list, (void **)ps->unsorted);
 	free(sorted);
-	return (1);
+	return (status);
 }
 
 int	create_stack(t_ps *ps, char **array)
 {
 	if (!to_list(&ps->a, array))
 		return (0);
-	if (!add_indexes(&ps->a))
+	if (ps->a.len == 0)
+		return (1);
+	if (!add_indexes(&ps->a, ps))
 		return (0);
 	return (1);
 }

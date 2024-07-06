@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:52:20 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/20 06:23:33 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:31:43 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 static char	**get_array(int argc, char **argv, bool *freable)
 {
-	static char	*nul = NULL;
-
-	*freable = false;
+	*freable = true;
 	if (argc == 1)
-		return (&nul);
+		return (my_split("", ' '));
 	if (argc == 2)
-	{
-		*freable = true;
 		return (my_split(argv[1], ' '));
-	}
+	*freable = false;
 	return (&argv[1]);
 }
 
