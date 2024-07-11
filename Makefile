@@ -6,7 +6,7 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/07/06 18:28:58 by angsanch         ###   ########.fr        #
+#    Updated: 2024/07/11 19:05:52 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,11 @@ C_FILES = src/main.c \
 			src/parsing/input.c \
 			src/parsing/stack.c \
 			src/logic/sort.c \
+			src/operations/run.c \
+			src/operations/swap.c \
+			src/operations/push.c \
+			src/operations/rotate.c \
+			src/operations/reverse_rotate.c \
 
 O_FILES = $(C_FILES:.c=.o)
 

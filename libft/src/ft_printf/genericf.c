@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   genericf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid>       +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:56:08 by angsanch          #+#    #+#             */
-/*   Updated: 2023/12/22 14:33:10 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:33:48 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	prepare_result(char *result, t_list *params, char const *format)
 		my_memcpy(result + n, param->str, param->len);
 		n += param->len;
 		i += param->characters;
-		list_pop_first(params);
+		list_pop(params, 0);
 	}
 	result[n] = '\0';
 }

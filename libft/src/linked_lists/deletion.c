@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deletion.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:45:49 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/13 18:45:49 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:05:26 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	delete_elem(t_elem *e, void (*del)(void *))
 {
 	if (e == NULL)
 		return ;
-	(*del)(e->content);
+	if (del)
+		(*del)(e->content);
 	e->next = NULL;
 	e->content = NULL;
 }

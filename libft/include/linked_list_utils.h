@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_utils.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:49:14 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/13 20:27:07 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:43:56 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		destroy_list(t_list *l);
 t_elem		*list_get_last(t_list *l);
 t_elem		*list_get_index_elem(t_list *l, size_t index);
 t_list		*create_list(void (*del)(void *));
+t_elem		*list_exclude_elem(t_list *l, size_t index);
+void		list_include_elem(t_list *l, size_t index, t_elem *e);
 size_t		list_len(t_list *l);
 
 #endif

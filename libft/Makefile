@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+         #
+#    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:06 by angsanch          #+#    #+#              #
-#    Updated: 2024/06/20 03:44:43 by angsanch         ###   ########.fr        #
+#    Updated: 2024/07/11 19:05:46 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,8 @@ LINKED_SOURCE = src/linked_lists/creation.c \
 			src/linked_lists/iter_tools.c \
 			src/linked_lists/modifications.c \
 			src/linked_lists/sort.c \
+			src/linked_lists/complex_operations.c \
+			src/linked_lists/modifications_utils.c \
 
 
 C_FILES =

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modifications.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:45:51 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/13 18:45:51 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:04:49 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,12 @@
 
 int	list_append(t_list *l, void *content)
 {
-	t_elem	*last;
 	t_elem	*e;
 
-	last = list_get_last(l);
 	e = create_elem(content);
 	if (e == NULL)
 		return (0);
-	if (last == NULL)
-		l->first = e;
-	else
-		last->next = e;
-	l->len ++;
+	list_include_elem(l, l->len - 1, e);
 	return (1);
 }
 
@@ -36,48 +30,29 @@ int	list_push(t_list *l, void *content)
 	e = create_elem(content);
 	if (e == NULL)
 		return (0);
-	e->next = l->first;
-	l->first = e;
-	l->len ++;
+	list_include_elem(l, 0, e);
 	return (1);
 }
 
 int	list_insert(t_list *l, size_t index, void *content)
 {
 	t_elem	*e;
-	t_elem	*prev;
 
-	if (index == 0)
-		return (list_push(l, content));
-	prev = list_get_index_elem(l, index - 1);
-	if (prev == NULL)
-		return (0);
 	e = create_elem(content);
 	if (e == NULL)
 		return (0);
-	e->next = prev->next;
-	prev->next = e;
-	l->len ++;
+	list_include_elem(l, index, e);
 	return (1);
 }
 
 int	list_pop(t_list *l, size_t index)
 {
-	t_elem	*prev;
-	t_elem	*deletion;
+	t_elem	*e;
 
-	if (index == 0)
-	{
-		list_pop_first(l);
-		return (1);
-	}
-	prev = list_get_index_elem(l, index - 1);
-	if (prev == NULL)
+	e = list_exclude_elem(l, index);
+	if (e == NULL)
 		return (0);
-	deletion = prev->next;
-	prev->next = deletion->next;
-	destroy_elem(deletion, l->del);
-	l->len --;
+	destroy_elem(e, l->del);
 	return (1);
 }
 

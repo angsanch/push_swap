@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:49:13 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/13 19:45:59 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:34:36 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int		list_append(t_list *l, void *content);
 int		list_insert(t_list *l, size_t index, void *content);
 int		list_pop(t_list *l, size_t index);
 void	*list_get_index(t_list *l, size_t index);
+void	**list_get_index_reference(t_list *l, size_t index);
+int		list_move_element(t_list *l, size_t src, size_t dst);
 void	list_import(t_list *l, void **data);
 void	**list_export(t_list *l, void *(*transform)(void *));
 void	list_unlink(t_list *l);
-void	list_pop_first(t_list *l);
+void	*list_exclude(t_list *l, size_t index);
 void	list_iter(t_list *l, void (*func)(void *, void *), void *data);
 ssize_t	list_first_fulfil(t_list *l, int (*func)(void *, void *), void *data);
 size_t	list_count_fulfil(t_list *l, int (*func)(void *, void *), void *data);

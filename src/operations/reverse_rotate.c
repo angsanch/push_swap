@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps.c                                               :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 05:33:13 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 19:03:34 by angsanch         ###   ########.fr       */
+/*   Created: 2024/07/11 16:08:44 by angsanch          #+#    #+#             */
+/*   Updated: 2024/07/11 16:09:09 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps.h"
 
-int	initialize_ps(t_ps *ps)
+void	o_rra(t_ps *ps)
 {
-	my_memset(ps, 0, sizeof(t_ps));
-	list_initialize(&ps->a, NULL);
-	list_initialize(&ps->b, NULL);
-	list_initialize(&ps->radix, NULL);
-	return (1);
+	list_move_element(&ps->a, ps->a.len - 1, 0);
 }
 
-void	delete_ps(t_ps *ps)
+void	o_rrb(t_ps *ps)
 {
-	if (ps == NULL)
-		return ;
-	list_unlink(&ps->a);
-	list_unlink(&ps->b);
-	list_delete(&ps->radix);
-	if (ps->unsorted != NULL)
-		free_string_array((char **)ps->unsorted);
+	list_move_element(&ps->b, ps->b.len, 0);
+}
+
+void	o_rrr(t_ps *ps)
+{
+	o_rra(ps);
+	o_rrb(ps);
 }
