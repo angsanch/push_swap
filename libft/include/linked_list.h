@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:49:13 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 18:34:36 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:53:54 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	*list_get_index(t_list *l, size_t index);
 void	**list_get_index_reference(t_list *l, size_t index);
 int		list_move_element(t_list *l, size_t src, size_t dst);
 void	list_import(t_list *l, void **data);
+int		list_initialize_from_array(t_list *l, void **data, void (*del)(void *));
 void	**list_export(t_list *l, void *(*transform)(void *));
 void	list_unlink(t_list *l);
 void	*list_exclude(t_list *l, size_t index);
