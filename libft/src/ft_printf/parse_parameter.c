@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parameter_utils.c                                  :+:      :+:    :+:   */
+/*   parse_parameter.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid>       +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 00:40:31 by angsanch          #+#    #+#             */
-/*   Updated: 2023/12/16 00:05:48 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:19:09 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	length_called(char const *format, t_parameter *p, int i)
 			return (i + 2);
 		}
 	}
-	return (i + p->length != 0);
+	return (i + 1);
 }
 
 t_parameter	*parse_parameter(char const *format, int *i)

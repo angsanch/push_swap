@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:52:25 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 20:22:12 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:02:19 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	compare_lens(void *list1, void *list2)
 static void	print_operations(void *operation,
 	__attribute__((unused)) void *data)
 {
-	static char	*ops[] = {"NULL", "SA", "SB", "SS", "PA", "PB",
-		"RA", "RB", "RR", "RRA", "RRB", "RRR"};
+	static char	*ops[] = {"null", "sa", "sb", "ss", "pa", "pb",
+		"ra", "rb", "rr", "rra", "rrb", "rrr"};
 
 	my_printf("%s\n", ops[(unsigned long int)(t_oper)operation]);
 }

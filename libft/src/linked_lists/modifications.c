@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:45:51 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 19:04:49 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:26:21 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	list_append(t_list *l, void *content)
 	e = create_elem(content);
 	if (e == NULL)
 		return (0);
-	list_include_elem(l, l->len - 1, e);
+	list_include_elem(l, l->len, e);
 	return (1);
 }
 

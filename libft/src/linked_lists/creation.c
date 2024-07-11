@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:45:46 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 20:42:14 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:54:03 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	list_initialize_from_array(t_list *l, void **data,
 		size ++;
 	while (l->len < size)
 	{
-		if (list_push(l, data[size - l->len - 1]))
+		if (!list_push(l, data[size - l->len - 1]))
 		{
 			list_delete(l);
 			return (0);
