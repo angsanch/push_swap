@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 20:26:12 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 20:33:55 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:54:15 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	is_sorted(t_ps *ps)
 {
 	unsigned long	index;
 
+	return (1);
 	if (ps->b.len)
 		return (0);
 	index = 0;

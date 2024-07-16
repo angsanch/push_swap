@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 20:26:42 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/16 00:03:15 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ void	o_rrr(t_ps *ps);
 void	sort(t_ps *ps);
 int		is_sorted(t_ps *ps);
 void	radix(t_ps *ps, t_list *l);
+
+void	rotate(t_ps *ps, t_list *l, char stk, ssize_t movement);
 
 #endif

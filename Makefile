@@ -6,13 +6,13 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/07/11 20:25:34 by angsanch         ###   ########.fr        #
+#    Updated: 2024/07/16 02:05:54 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 
-CFLAGS=-Wall -Werror -Wextra
+CFLAGS=-Wall -Werror -Wextra -g
 
 C_FILES = src/main.c \
 			src/tools/ps.c \
@@ -22,6 +22,7 @@ C_FILES = src/main.c \
 			src/logic/sort.c \
 			src/logic/sorted.c \
 			src/logic/radix.c \
+			src/logic/generic.c \
 			src/operations/run.c \
 			src/operations/swap.c \
 			src/operations/push.c \
