@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:52:25 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/11 21:02:19 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:10:08 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	compare_lens(void *list1, void *list2)
 {
-	return (((t_list *)list2)->len - ((t_list *)list1)->len);
+	return (((t_list *)list1)->len - ((t_list *)list2)->len);
 }
 
 static void	print_operations(void *operation,
@@ -46,11 +46,13 @@ static void	run_sort(t_ps *ps, void (*sorter)(t_ps *, t_list *))
 	sorter(ps, l);
 	if (is_sorted(ps))
 		list_push(&ps->solutions, l);
+	else
+		list_destroy(l);
 }
 
 void	sort(t_ps *ps)
 {
-	static void	(*sorters[])(t_ps *, t_list *) = {&radix, NULL};
+	static void	(*sorters[])(t_ps *, t_list *) = {&simple, &radix, NULL};
 	int			i;
 
 	i = 0;
