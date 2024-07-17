@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:52:25 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/16 13:10:08 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:12:29 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	reset_stacks(t_ps *ps)
 	return (list_initialize_from_array(&ps->a, (void **)ps->unsorted, NULL));
 }
 
-static void	run_sort(t_ps *ps, void (*sorter)(t_ps *, t_list *))
+static void	run_sort(t_ps *ps, void (*sorter)(t_ps *, t_list *, size_t))
 {
 	t_list	*l;
 
@@ -43,16 +43,21 @@ static void	run_sort(t_ps *ps, void (*sorter)(t_ps *, t_list *))
 	l = list_create(NULL);
 	if (l == NULL)
 		return ;
-	sorter(ps, l);
+	sorter(ps, l, ps->max);
 	if (is_sorted(ps))
+	{
 		list_push(&ps->solutions, l);
+		if (l->len < ps->max)
+			ps->max = l->len;
+	}
 	else
 		list_destroy(l);
 }
 
 void	sort(t_ps *ps)
 {
-	static void	(*sorters[])(t_ps *, t_list *) = {&simple, &radix, NULL};
+	static void	(*sorters[])(t_ps *, t_list *, size_t) = {&simple,
+		&radix, &insertion, NULL};
 	int			i;
 
 	i = 0;

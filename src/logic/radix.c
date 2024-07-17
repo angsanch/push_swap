@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:34:11 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/16 11:59:15 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:00:30 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static int	cycle(t_ps *ps, t_list *l, unsigned long discriminator)
 	return (discriminator << 1 < ps->a.len + ps->b.len);
 }
 
-void	radix(t_ps *ps, t_list *l)
+void	radix(t_ps *ps, t_list *l, size_t max)
 {
 	unsigned long	discriminator;
 
 	discriminator = 0b1;
-	while (cycle(ps, l, discriminator))
+	while (cycle(ps, l, discriminator) && (max == 0 || l->len < max))
 		discriminator <<= 1;
 }

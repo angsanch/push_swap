@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/16 12:57:55 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:21:25 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct pushswap_data
 	t_list	b;
 	t_list	solutions;
 	t_num	**unsorted;
+	size_t	max;
 }	t_ps;
 
 int		initialize_ps(t_ps *ps);
@@ -71,9 +72,9 @@ void	o_rrr(t_ps *ps);
 
 void	sort(t_ps *ps);
 int		is_sorted(t_ps *ps);
-void	radix(t_ps *ps, t_list *l);
-void	simple(t_ps *ps, t_list *l);
-
+void	radix(t_ps *ps, t_list *l, size_t max);
+void	simple(t_ps *ps, t_list *l, size_t max);
+void	insertion(t_ps *ps, t_list *l, size_t max);
 
 void	rotate(t_ps *ps, t_list *l, char stk, ssize_t movement);
 

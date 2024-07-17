@@ -6,13 +6,13 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:17:24 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/16 12:57:28 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:18:19 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps.h"
 
-static void simple2(t_ps *ps, t_list *l)
+static void	simple2(t_ps *ps, t_list *l)
 {
 	unsigned long	values[2];
 
@@ -22,7 +22,7 @@ static void simple2(t_ps *ps, t_list *l)
 		run_operation(ps, l, SA);
 }
 
-static void simple3(t_ps *ps, t_list *l)
+static void	simple3(t_ps *ps, t_list *l)
 {
 	unsigned long	values[3];
 	unsigned long	indexes[3];
@@ -57,7 +57,7 @@ static void simple3(t_ps *ps, t_list *l)
 	}
 }
 
-void	simple(t_ps *ps, t_list *l)
+void	simple(t_ps *ps, t_list *l, __attribute__((unused)) size_t max)
 {
 	if (ps->a.len >= 3)
 		simple3(ps, l);
