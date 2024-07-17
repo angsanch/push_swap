@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/17 16:25:16 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:54:20 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ int		is_sorted(t_ps *ps);
 void	radix(t_ps *ps, t_list *l, size_t max);
 void	simple(t_ps *ps, t_list *l, size_t max);
 void	insertion(t_ps *ps, t_list *l, size_t max);
+void	ksort(t_ps *ps, t_list *l, size_t max);
 
 void	rotate(t_ps *ps, t_list *l, char stk, ssize_t movement);
+int		num_less_than(void *n1, void *n2);
+void	insert(t_ps *ps, t_list *l, ssize_t *offset);
+
 
 #endif

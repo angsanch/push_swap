@@ -6,24 +6,24 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:14:53 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/17 16:21:22 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:54:02 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps.h"
 
-static int	less_than(void *n1, void *n2)
+int	num_less_than(void *n1, void *n2)
 {
 	return (((t_num *)n1)->index < ((t_num *)n2)->index);
 }
 
-static void	insert(t_ps *ps, t_list *l, ssize_t *offset)
+void	insert(t_ps *ps, t_list *l, ssize_t *offset)
 {
 	size_t	index;
 	t_num	*n;
 
 	n = list_get_index(&ps->b, 0);
-	index = list_count_fulfil(&ps->a, &less_than, n);
+	index = list_count_fulfil(&ps->a, &num_less_than, n);
 	rotate(ps, l, 'a', index - *offset);
 	*offset = index;
 	run_operation(ps, l, PA);
@@ -33,7 +33,9 @@ void	insertion(t_ps *ps, t_list *l, size_t max)
 {
 	ssize_t	offset;
 	size_t	indexes[2];
+	size_t	total;
 
+	total = ps->b.len;
 	while (ps->a.len > 3)
 	{
 		run_operation(ps, l, PB);
@@ -46,7 +48,7 @@ void	insertion(t_ps *ps, t_list *l, size_t max)
 	}
 	simple(ps, l, max);
 	offset = 0;
-	while (ps->b.len && (l->len < max || max == 0))
+	while (ps->b.len > total && (l->len < max || max == 0))
 		insert(ps, l, &offset);
 	rotate(ps, l, 'a', -offset);
 }

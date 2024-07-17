@@ -6,7 +6,7 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/07/17 15:21:44 by angsanch         ###   ########.fr        #
+#    Updated: 2024/07/17 16:56:25 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ C_FILES = src/main.c \
 			src/logic/generic.c \
 			src/logic/simple.c \
 			src/logic/insertion.c \
+			src/logic/ksort.c \
 			src/operations/run.c \
 			src/operations/swap.c \
 			src/operations/push.c \
