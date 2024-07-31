@@ -6,13 +6,13 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/07/17 16:56:25 by angsanch         ###   ########.fr        #
+#    Updated: 2024/07/30 16:13:07 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 
-CFLAGS=-Wall -Werror -Wextra
+CFLAGS=-Wall -Werror -Wextra -g
 
 C_FILES = src/main.c \
 			src/tools/ps.c \

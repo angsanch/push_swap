@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:56:41 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/17 18:10:00 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:31:47 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,28 @@ static size_t	distance_to_insert(t_ps *ps, t_num *ins, size_t offset)
 
 static size_t	closest_insert(t_ps *ps, size_t offset)
 {
-	size_t	distances[20];
-	size_t	ammount;
 	size_t	i;
-	size_t	min;
+	size_t	min_index;
+	size_t	min_value;
+	size_t	cost;
+	t_num	*num;
 
-	ammount = sizeof(distances) / sizeof(size_t);
 	i = 0;
-	while (i < ammount / 2 && i < ps->b.len / 2)
+	min_index = 0;
+	min_value = ps->a.len + ps->b.len;
+	while (i < ps->b.len)
 	{
-		distances[i] = distance_to_insert(ps, list_get_index(&ps->b, i),
-			offset) + i;
+		num = list_get_index(&ps->b, i);
+		cost = rotate_movements(&ps->b, i) + \
+			distance_to_insert(ps, num, offset);
+		if (cost < min_value)
+		{
+			min_value = cost;
+			min_index = i;
+		}
 		i ++;
 	}
-	i = 0;
-	while (i < ammount / 2 && i < ps->b.len / 2)
-	{
-		distances[i] = distance_to_insert(ps, list_get_index(&ps->b, ps->b.len - i - 1),
-			offset) + i;
-		i ++;
-	}
-	min = 0;
-	i = 0;
-	while (i < ammount)
-	{
-		if (distances[i] < distances[min])
-			min = i;
-		i ++;
-	}
-	if (min >= ammount / 2)
-		min = ps->b.len - (min - ammount / 2) - 1;
-	return (min);
+	return (min_index);
 }
 
 static void move2a(t_ps *ps, t_list *l)
@@ -65,13 +56,16 @@ static void move2a(t_ps *ps, t_list *l)
 	{
 		index = closest_insert(ps, offset);
 		rotate(ps, l, 'b', index);
+		(void)&closest_insert;
+		(void)index;
 		insert(ps, l, &offset);
 	}
+	rotate(ps, l, 'a', -offset);
 }
 
 static void	move2b(t_ps *ps, t_list *l)
 {
-	static float	min = 0.15;
+	const float		min = 0.15;
 	t_num			*num;
 
 	while (ps->a.len > 5)

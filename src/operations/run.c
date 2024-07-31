@@ -6,11 +6,19 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:58:16 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/17 16:31:42 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:44:51 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps.h"
+
+void	print_operation(t_oper op)
+{
+	static char	*ops[] = {"null", "sa", "sb", "ss", "pa", "pb",
+		"ra", "rb", "rr", "rra", "rrb", "rrr"};
+
+	my_printf("%s\n", ops[op]);
+}
 
 int	run_operation(t_ps *ps, t_list *l, t_oper o)
 {
@@ -19,5 +27,6 @@ int	run_operation(t_ps *ps, t_list *l, t_oper o)
 
 	if (!operations[(unsigned long int)o](ps))
 		return (1);
+	//print_operation(o);
 	return (list_append(l, (void *)o));
 }
