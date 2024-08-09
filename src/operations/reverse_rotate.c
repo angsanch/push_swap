@@ -24,7 +24,7 @@ int	o_rrb(t_ps *ps)
 {
 	if (ps->b.len < 2)
 		return (0);
-	list_move_element(&ps->b, ps->b.len, 0);
+	list_move_element(&ps->b, ps->b.len - 1, 0);
 	return (1);
 }
 

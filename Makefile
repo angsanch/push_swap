@@ -12,7 +12,7 @@
 
 CC=gcc
 
-CFLAGS=-Wall -Werror -Wextra -g
+CFLAGS=-Wall -Werror -Wextra
 
 C_FILES = src/main.c \
 			src/tools/ps.c \
