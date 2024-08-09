@@ -56,8 +56,6 @@ static void move2a(t_ps *ps, t_list *l)
 	{
 		index = closest_insert(ps, offset);
 		rotate(ps, l, 'b', index);
-		(void)&closest_insert;
-		(void)index;
 		insert(ps, l, &offset);
 	}
 	rotate(ps, l, 'a', -offset);
@@ -65,7 +63,7 @@ static void move2a(t_ps *ps, t_list *l)
 
 static void	move2b(t_ps *ps, t_list *l)
 {
-	const float		min = 0.15;
+	const float		min = 0.175;
 	t_num			*num;
 
 	while (ps->a.len > 5)
