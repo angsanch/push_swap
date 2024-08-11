@@ -58,6 +58,7 @@ int		create_stack(t_ps *ps, char **array);
 int		parse_input(t_ps *ps, int argc, char **argv);
 
 int		run_operation(t_ps *ps, t_list *l, t_oper o);
+int		repeat_operation(t_ps *ps, t_list *l, t_oper o, int times);
 int		o_sa(t_ps *ps);
 int		o_sb(t_ps *ps);
 int		o_ss(t_ps *ps);
@@ -78,7 +79,7 @@ void	insertion(t_ps *ps, t_list *l, size_t max);
 void	ksort(t_ps *ps, t_list *l, size_t max);
 
 size_t	rotate_movements(t_list *stack, ssize_t movement);
-void	rotate(t_ps *ps, t_list *l, char stk, ssize_t movement);
+void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b);
 int		num_less_than(void *n1, void *n2);
 void	insert(t_ps *ps, t_list *l, ssize_t *offset);
 

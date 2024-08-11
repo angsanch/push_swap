@@ -24,7 +24,7 @@ void	insert(t_ps *ps, t_list *l, ssize_t *offset)
 
 	n = list_get_index(&ps->b, 0);
 	index = list_count_fulfil(&ps->a, &num_less_than, n);
-	rotate(ps, l, 'a', index - *offset);
+	rotate(ps, l, index - *offset, 0);
 	*offset = index;
 	run_operation(ps, l, PA);
 }
@@ -50,5 +50,5 @@ void	insertion(t_ps *ps, t_list *l, size_t max)
 	offset = 0;
 	while (ps->b.len > total && (l->len < max || max == 0))
 		insert(ps, l, &offset);
-	rotate(ps, l, 'a', -offset);
+	rotate(ps, l, -offset, 0);
 }

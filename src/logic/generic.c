@@ -23,31 +23,51 @@ size_t	rotate_movements(t_list *stack, ssize_t movement)
 	return (movement);
 }
 
-void	rotate(t_ps *ps, t_list *l, char stk, ssize_t movement)
+static void	calculate_overflow(t_ps *ps, ssize_t *ap, ssize_t *bp, t_oper *ops)
 {
-	t_list	*stack;
-	t_oper	rot;
+	ssize_t	a;
+	ssize_t	b;
 
-	if (stk == 'a')
-		stack = &ps->a;
-	else if (stk == 'b')
-		stack = &ps->b;
-	if (stk == 'a')
-		rot = RA;
-	else if (stk == 'b')
-		rot = RB;
-	if (movement >= 0 && stack->len > 0)
-		movement = (movement % stack->len);
-	else if (stack->len > 0)
-		movement = stack->len -(-movement % stack->len);
-	if ((size_t)movement > stack->len / 2)
+	a = *ap;
+	b = *bp;
+	if (a >= 0 && ps->a.len > 0)
+		a = (a % ps->a.len);
+	else if (ps->a.len > 0)
+		a = ps->a.len -(-a % ps->a.len);
+	if ((size_t)a > ps->a.len / 2)
 	{
-		movement = stack->len - movement;
-		rot += 3;
+		a = ps->a.len - a;
+		ops[0] = RRA;
 	}
-	while (movement > 0 && stack->len > 1)
+	if (b >= 0 && ps->b.len > 0)
+		b = (b % ps->b.len);
+	else if (ps->b.len > 0)
+		b = ps->b.len -(-b % ps->b.len);
+	if ((size_t)b > ps->b.len / 2)
 	{
-		run_operation(ps, l, rot);
-		movement --;
+		b = ps->b.len - b;
+		ops[1] = RRB;
 	}
+	*ap = a;
+	*bp = b;
+}
+
+void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
+{
+	t_oper	ops[3];
+	bool	same_sign;
+
+	ops[0] = RA;
+	ops[1] = RB;
+	calculate_overflow(ps, &a, &b, ops);
+	ops[2] = ops[1] + 1;
+	same_sign = (a >= 0) == (b >= 0);
+	while (a > 0 && b > 0 && same_sign)
+	{
+		run_operation(ps, l, ops[2]);
+		a --;
+		b --;
+	}
+	repeat_operation(ps, l, ops[0], a);
+	repeat_operation(ps, l, ops[1], b);
 }

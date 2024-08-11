@@ -55,10 +55,10 @@ static void move2a(t_ps *ps, t_list *l)
 	while (ps->b.len)
 	{
 		index = closest_insert(ps, offset);
-		rotate(ps, l, 'b', index);
+		rotate(ps, l, 0, index);
 		insert(ps, l, &offset);
 	}
-	rotate(ps, l, 'a', -offset);
+	rotate(ps, l, -offset, 0);
 }
 
 static void	move2b(t_ps *ps, t_list *l)
