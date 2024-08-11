@@ -34,8 +34,7 @@ static size_t	closest_insert(t_ps *ps, size_t offset)
 	while (i < ps->b.len)
 	{
 		num = list_get_index(&ps->b, i);
-		cost = rotate_movements(&ps->b, i) + \
-			distance_to_insert(ps, num, offset);
+		cost = rotate_movements(ps, distance_to_insert(ps, num, offset), i);
 		if (cost < min_value)
 		{
 			min_value = cost;
@@ -46,10 +45,10 @@ static size_t	closest_insert(t_ps *ps, size_t offset)
 	return (min_index);
 }
 
-static void move2a(t_ps *ps, t_list *l)
+static void	move2a(t_ps *ps, t_list *l)
 {
 	size_t	index;
-	ssize_t offset;
+	ssize_t	offset;
 
 	offset = 0;
 	while (ps->b.len)
@@ -61,11 +60,12 @@ static void move2a(t_ps *ps, t_list *l)
 	rotate(ps, l, -offset, 0);
 }
 
-static void	move2b(t_ps *ps, t_list *l)
+void	ksort(t_ps *ps, t_list *l, size_t max)
 {
 	const float		min = 0.175;
 	t_num			*num;
 
+	(void)max;
 	while (ps->a.len > 5)
 	{
 		num = list_get_index(&ps->a, 0);
@@ -79,11 +79,5 @@ static void	move2b(t_ps *ps, t_list *l)
 			run_operation(ps, l, RA);
 	}
 	insertion(ps, l, 0);
-}
-
-void	ksort(t_ps *ps, t_list *l, size_t max)
-{
-	(void)max;
-	move2b(ps, l);
 	move2a(ps, l);
 }

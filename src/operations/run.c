@@ -40,7 +40,7 @@ int	repeat_operation(t_ps *ps, t_list *l, t_oper o, int times)
 	while (i < times)
 	{
 		if (!run_operation(ps, l, o))
-			break;
+			break ;
 		i ++;
 	}
 	return (0);

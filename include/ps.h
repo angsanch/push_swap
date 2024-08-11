@@ -78,10 +78,9 @@ void	simple(t_ps *ps, t_list *l, size_t max);
 void	insertion(t_ps *ps, t_list *l, size_t max);
 void	ksort(t_ps *ps, t_list *l, size_t max);
 
-size_t	rotate_movements(t_list *stack, ssize_t movement);
+size_t	rotate_movements(t_ps *ps, ssize_t a, ssize_t b);
 void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b);
 int		num_less_than(void *n1, void *n2);
 void	insert(t_ps *ps, t_list *l, ssize_t *offset);
-
 
 #endif

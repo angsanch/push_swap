@@ -12,17 +12,6 @@
 
 #include "../../include/ps.h"
 
-size_t	rotate_movements(t_list *stack, ssize_t movement)
-{
-	if (movement >= 0 && stack->len > 0)
-		movement = (movement % stack->len);
-	else if (stack->len > 0)
-		movement = stack->len -(-movement % stack->len);
-	if ((size_t)movement > stack->len / 2)
-		movement = stack->len - movement;
-	return (movement);
-}
-
 static void	calculate_overflow(t_ps *ps, ssize_t *ap, ssize_t *bp, t_oper *ops)
 {
 	ssize_t	a;
@@ -52,6 +41,29 @@ static void	calculate_overflow(t_ps *ps, ssize_t *ap, ssize_t *bp, t_oper *ops)
 	*bp = b;
 }
 
+size_t	rotate_movements(t_ps *ps, ssize_t a, ssize_t b)
+{
+	t_oper	ops[3];
+	bool	same_sign;
+	size_t	count;
+
+	count = 0;
+	ops[0] = RA;
+	ops[1] = RB;
+	calculate_overflow(ps, &a, &b, ops);
+	ops[2] = ops[1] + 1;
+	same_sign = (ops[0] == RA && ops[1] == RB) || \
+		(ops[0] == RRA && ops[1] == RRB);
+	while (a > 0 && b > 0 && same_sign)
+	{
+		count ++;
+		a --;
+		b --;
+	}
+	count += a + b;
+	return (count);
+}
+
 void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
 {
 	t_oper	ops[3];
@@ -61,7 +73,8 @@ void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
 	ops[1] = RB;
 	calculate_overflow(ps, &a, &b, ops);
 	ops[2] = ops[1] + 1;
-	same_sign = (a >= 0) == (b >= 0);
+	same_sign = (ops[0] == RA && ops[1] == RB) || \
+		(ops[0] == RRA && ops[1] == RRB);
 	while (a > 0 && b > 0 && same_sign)
 	{
 		run_operation(ps, l, ops[2]);

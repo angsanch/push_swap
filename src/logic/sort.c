@@ -44,7 +44,7 @@ static void	run_sort(t_ps *ps, void (*sorter)(t_ps *, t_list *, size_t))
 	if (l == NULL)
 		return ;
 	sorter(ps, l, ps->max);
-	if (is_sorted(ps) || 1)
+	if (is_sorted(ps))
 	{
 		list_push(&ps->solutions, l);
 		if (l->len < ps->max || ps->max == 0)
@@ -56,8 +56,8 @@ static void	run_sort(t_ps *ps, void (*sorter)(t_ps *, t_list *, size_t))
 
 void	sort(t_ps *ps)
 {
-	static void	(*sorters[])(t_ps *, t_list *, size_t) = {/*&simple,
-		&radix, &insertion,*/ &ksort, NULL};
+	static void	(*sorters[])(t_ps *, t_list *, size_t) = {&simple,
+		&radix, &insertion, &ksort, NULL};
 	int			i;
 
 	i = 0;
