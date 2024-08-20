@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:14:53 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/30 14:56:18 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 03:47:15 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	num_less_than(void *n1, void *n2)
 	return (((t_num *)n1)->index < ((t_num *)n2)->index);
 }
 
-void	insert(t_ps *ps, t_list *l, ssize_t *offset)
+void	insert(t_ps *ps, t_list *l, ssize_t *offset, ssize_t bindex)
 {
-	size_t	index;
+	ssize_t	index;
 	t_num	*n;
 
 	n = list_get_index(&ps->b, 0);
 	index = list_count_fulfil(&ps->a, &num_less_than, n);
-	rotate(ps, l, index - *offset, 0);
+	rotate(ps, l, index - *offset, bindex);
 	*offset = index;
 	run_operation(ps, l, PA);
 }
@@ -49,6 +49,6 @@ void	insertion(t_ps *ps, t_list *l, size_t max)
 	simple(ps, l, max);
 	offset = 0;
 	while (ps->b.len > total && (l->len < max || max == 0))
-		insert(ps, l, &offset);
+		insert(ps, l, &offset, 0);
 	rotate(ps, l, -offset, 0);
 }

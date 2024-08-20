@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:56:41 by angsanch          #+#    #+#             */
-/*   Updated: 2024/08/20 03:20:22 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 03:33:10 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ static void	move2a(t_ps *ps, t_list *l)
 	while (ps->b.len)
 	{
 		index = closest_insert(ps, offset);
-		rotate(ps, l, 0, index);
-		insert(ps, l, &offset);
+		insert(ps, l, &offset, index);
 	}
 	rotate(ps, l, -offset, 0);
 }

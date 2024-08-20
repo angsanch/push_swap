@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 22:13:52 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/30 19:57:37 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 04:02:42 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ size_t	rotate_movements(t_ps *ps, ssize_t a, ssize_t b)
 	ops[0] = RA;
 	ops[1] = RB;
 	calculate_overflow(ps, &a, &b, ops);
-	ops[2] = ops[1] + 1;
+	ops[2] = ops[0] + 2;
 	same_sign = (ops[0] == RA && ops[1] == RB) || \
 		(ops[0] == RRA && ops[1] == RRB);
 	while (a > 0 && b > 0 && same_sign)
@@ -71,10 +71,13 @@ void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
 
 	ops[0] = RA;
 	ops[1] = RB;
+	printf("%5ld %5ld ", a, b);
 	calculate_overflow(ps, &a, &b, ops);
 	ops[2] = ops[1] + 1;
 	same_sign = (ops[0] == RA && ops[1] == RB) || \
 		(ops[0] == RRA && ops[1] == RRB);
+	printf("%5ld %5ld %-3s %-3s %-3s %d\n", a, b, (ops[0] == RA) ? "RA" : "RRA", (ops[1] == RB) ? "RB" : "RRB", (ops[2] == RR) ? "RR" : "RRR", same_sign);
+	//exit(0);
 	while (a > 0 && b > 0 && same_sign)
 	{
 		run_operation(ps, l, ops[2]);

@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/30 14:00:21 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 03:32:35 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ void	ksort(t_ps *ps, t_list *l, size_t max);
 size_t	rotate_movements(t_ps *ps, ssize_t a, ssize_t b);
 void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b);
 int		num_less_than(void *n1, void *n2);
-void	insert(t_ps *ps, t_list *l, ssize_t *offset);
+void	insert(t_ps *ps, t_list *l, ssize_t *offset, ssize_t bindex);
 
 #endif
