@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:56:41 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/30 22:31:47 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 03:20:22 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ static size_t	distance_to_insert(t_ps *ps, t_num *ins, size_t offset)
 
 static size_t	closest_insert(t_ps *ps, size_t offset)
 {
+	const float	limiter = 0.975;
 	size_t	i;
 	size_t	min_index;
 	size_t	min_value;
 	size_t	cost;
+	size_t	index;
 	t_num	*num;
 
 	i = 0;
@@ -35,7 +37,8 @@ static size_t	closest_insert(t_ps *ps, size_t offset)
 	{
 		num = list_get_index(&ps->b, i);
 		cost = rotate_movements(ps, distance_to_insert(ps, num, offset), i);
-		if (cost < min_value)
+		index = list_count_fulfil(&ps->b, &num_less_than, num);
+		if (cost < min_value && index <= limiter * (ps->a.len + ps->b.len))
 		{
 			min_value = cost;
 			min_index = i;
@@ -62,7 +65,7 @@ static void	move2a(t_ps *ps, t_list *l)
 
 void	ksort(t_ps *ps, t_list *l, size_t max)
 {
-	const float		min = 0.175;
+	const float		min = 0.15;
 	t_num			*num;
 
 	(void)max;
