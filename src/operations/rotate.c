@@ -30,5 +30,5 @@ int	o_rb(t_ps *ps)
 
 int	o_rr(t_ps *ps)
 {
-	return (o_ra(ps) || o_rb(ps));
+	return (o_ra(ps) && o_rb(ps));
 }

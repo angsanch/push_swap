@@ -50,6 +50,15 @@ typedef struct pushswap_data
 	size_t	max;
 }	t_ps;
 
+struct s_ksort_helper
+{
+	size_t	min_index;
+	ssize_t	min_value;
+	ssize_t	cost;
+	size_t	index;
+	t_num	*num;	
+};
+
 int		initialize_ps(t_ps *ps);
 void	delete_ps(t_ps *ps);
 t_num	*create_num(long n);

@@ -6,7 +6,7 @@ import sys
 
 def run_test(nums:list):
 	result = subprocess.run(["./push_swap", *[str(i) for i in nums]], stdout=subprocess.PIPE)
-	return len(result.stdout.decode().split("\n"))
+	return len([i for i in result.stdout.decode().split("\n") if len(i) > 0])
 
 def run_tests(amount:int, params:int):
 	numbers = [list(range(params)) for _ in range(amount)]

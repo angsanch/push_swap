@@ -6,84 +6,95 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 22:13:52 by angsanch          #+#    #+#             */
-/*   Updated: 2024/08/20 04:02:42 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:34:29 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps.h"
 
-static void	calculate_overflow(t_ps *ps, ssize_t *ap, ssize_t *bp, t_oper *ops)
+size_t	rotate_movements(t_ps *ps, ssize_t a, ssize_t b)
 {
-	ssize_t	a;
-	ssize_t	b;
+	size_t	abs[2];
 
-	a = *ap;
-	b = *bp;
 	if (a >= 0 && ps->a.len > 0)
 		a = (a % ps->a.len);
 	else if (ps->a.len > 0)
 		a = ps->a.len -(-a % ps->a.len);
 	if ((size_t)a > ps->a.len / 2)
-	{
 		a = ps->a.len - a;
-		ops[0] = RRA;
-	}
 	if (b >= 0 && ps->b.len > 0)
 		b = (b % ps->b.len);
 	else if (ps->b.len > 0)
 		b = ps->b.len -(-b % ps->b.len);
 	if ((size_t)b > ps->b.len / 2)
-	{
 		b = ps->b.len - b;
-		ops[1] = RRB;
-	}
-	*ap = a;
-	*bp = b;
+	abs[0] = a * ((a > 0) * 2 - 1);
+	abs[1] = b * ((b > 0) * 2 - 1);
+	if (a == 0 || b == 0 || ((a > 0) != (b > 0)))
+		return (abs[0] + abs[1]);
+	if (abs[0] > abs[1])
+		return (abs[0]);
+	else
+		return (abs[1]);
 }
 
-size_t	rotate_movements(t_ps *ps, ssize_t a, ssize_t b)
+static void	rotate_simple(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
 {
-	t_oper	ops[3];
-	bool	same_sign;
-	size_t	count;
+	if (a > 0)
+		repeat_operation(ps, l, RA, a);
+	else if (a)
+		repeat_operation(ps, l, RRA, -a);
+	if (b > 0)
+		repeat_operation(ps, l, RB, b);
+	else if (b)
+		repeat_operation(ps, l, RRB, -b);
+}
 
-	count = 0;
-	ops[0] = RA;
-	ops[1] = RB;
-	calculate_overflow(ps, &a, &b, ops);
-	ops[2] = ops[0] + 2;
-	same_sign = (ops[0] == RA && ops[1] == RB) || \
-		(ops[0] == RRA && ops[1] == RRB);
-	while (a > 0 && b > 0 && same_sign)
+static void	rotate_same(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
+{
+	while (a != 0 && b != 0)
 	{
-		count ++;
+		run_operation(ps, l, RR);
 		a --;
 		b --;
 	}
-	count += a + b;
-	return (count);
+	repeat_operation(ps, l, RA, a);
+	repeat_operation(ps, l, RB, b);
+}
+
+static void	rotate_same_reverse(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
+{
+	while (a != 0 && b != 0)
+	{
+		run_operation(ps, l, RRR);
+		a ++;
+		b ++;
+	}
+	repeat_operation(ps, l, RRA, -a);
+	repeat_operation(ps, l, RRB, -b);
 }
 
 void	rotate(t_ps *ps, t_list *l, ssize_t a, ssize_t b)
 {
-	t_oper	ops[3];
-	bool	same_sign;
-
-	ops[0] = RA;
-	ops[1] = RB;
-	printf("%5ld %5ld ", a, b);
-	calculate_overflow(ps, &a, &b, ops);
-	ops[2] = ops[1] + 1;
-	same_sign = (ops[0] == RA && ops[1] == RB) || \
-		(ops[0] == RRA && ops[1] == RRB);
-	printf("%5ld %5ld %-3s %-3s %-3s %d\n", a, b, (ops[0] == RA) ? "RA" : "RRA", (ops[1] == RB) ? "RB" : "RRB", (ops[2] == RR) ? "RR" : "RRR", same_sign);
-	//exit(0);
-	while (a > 0 && b > 0 && same_sign)
+	if (a >= 0 && ps->a.len > 0)
+		a = (a % ps->a.len);
+	else if (ps->a.len > 0)
+		a = ps->a.len -(-a % ps->a.len);
+	if ((size_t)a > ps->a.len / 2)
+		a = a - ps->a.len;
+	if (b >= 0 && ps->b.len > 0)
+		b = (b % ps->b.len);
+	else if (ps->b.len > 0)
+		b = ps->b.len -(-b % ps->b.len);
+	if ((size_t)b > ps->b.len / 2)
+		b = b - ps->b.len;
+	if (a == 0 || b == 0 || ((a > 0) != (b > 0)))
+		rotate_simple(ps, l, a, b);
+	else
 	{
-		run_operation(ps, l, ops[2]);
-		a --;
-		b --;
+		if (a > 0)
+			rotate_same(ps, l, a, b);
+		else
+			rotate_same_reverse(ps, l, a, b);
 	}
-	repeat_operation(ps, l, ops[0], a);
-	repeat_operation(ps, l, ops[1], b);
 }

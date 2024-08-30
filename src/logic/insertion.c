@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:14:53 by angsanch          #+#    #+#             */
-/*   Updated: 2024/08/20 03:47:15 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:15:35 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	insert(t_ps *ps, t_list *l, ssize_t *offset, ssize_t bindex)
 	ssize_t	index;
 	t_num	*n;
 
-	n = list_get_index(&ps->b, 0);
+	n = list_get_index(&ps->b, bindex);
 	index = list_count_fulfil(&ps->a, &num_less_than, n);
 	rotate(ps, l, index - *offset, bindex);
 	*offset = index;

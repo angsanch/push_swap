@@ -22,30 +22,27 @@ static size_t	distance_to_insert(t_ps *ps, t_num *ins, size_t offset)
 
 static size_t	closest_insert(t_ps *ps, size_t offset)
 {
-	const float	limiter = 0.975;
-	size_t	i;
-	size_t	min_index;
-	size_t	min_value;
-	size_t	cost;
-	size_t	index;
-	t_num	*num;
+	const float				limiter = 0.975;
+	size_t					i;
+	struct s_ksort_helper	h;
 
 	i = 0;
-	min_index = 0;
-	min_value = ps->a.len + ps->b.len;
+	h.min_index = -(ps->a.len + ps->b.len);
+	h.min_value = ps->a.len + ps->b.len;
 	while (i < ps->b.len)
 	{
-		num = list_get_index(&ps->b, i);
-		cost = rotate_movements(ps, distance_to_insert(ps, num, offset), i);
-		index = list_count_fulfil(&ps->b, &num_less_than, num);
-		if (cost < min_value && index <= limiter * (ps->a.len + ps->b.len))
+		h.num = list_get_index(&ps->b, i);
+		h.cost = rotate_movements(ps, distance_to_insert(ps, h.num, offset), i);
+		h.index = list_count_fulfil(&ps->b, &num_less_than, h.num);
+		if (h.cost < h.min_value && \
+			h.index <= limiter * (ps->a.len + ps->b.len))
 		{
-			min_value = cost;
-			min_index = i;
+			h.min_value = h.cost;
+			h.min_index = i;
 		}
 		i ++;
 	}
-	return (min_index);
+	return (h.min_index);
 }
 
 static void	move2a(t_ps *ps, t_list *l)
@@ -64,7 +61,7 @@ static void	move2a(t_ps *ps, t_list *l)
 
 void	ksort(t_ps *ps, t_list *l, size_t max)
 {
-	const float		min = 0.15;
+	const float		min = 0.2;
 	t_num			*num;
 
 	(void)max;
@@ -72,11 +69,7 @@ void	ksort(t_ps *ps, t_list *l, size_t max)
 	{
 		num = list_get_index(&ps->a, 0);
 		if (num->index < (min * (ps->a.len + ps->b.len)) + ps->b.len)
-		{
 			run_operation(ps, l, PB);
-			if (num->index % 2)
-				run_operation(ps, l, RB);
-		}
 		else
 			run_operation(ps, l, RA);
 	}

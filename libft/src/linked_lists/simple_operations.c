@@ -39,17 +39,20 @@ t_elem	*list_get_last(t_list *l)
 	return (e);
 }
 
-t_elem	*list_get_index_elem(t_list *l, size_t index)
+t_elem	*list_get_index_elem(t_list *l, ssize_t index)
 {
 	t_elem	*e;
 	size_t	i;
 
 	if (l->len == 0)
 		return (NULL);
-	index %= l->len;
+	if (index >= 0)
+		index %= l->len;
+	else
+		index = l->len - (-index % l->len);
 	e = l->first;
 	i = 0;
-	while (i < index)
+	while (i < (size_t)index)
 	{
 		i ++;
 		e = e->next;
@@ -57,7 +60,7 @@ t_elem	*list_get_index_elem(t_list *l, size_t index)
 	return (e);
 }
 
-void	*list_get_index(t_list *l, size_t index)
+void	*list_get_index(t_list *l, ssize_t index)
 {
 	void	**reference;
 

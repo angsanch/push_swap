@@ -12,7 +12,7 @@
 
 #include "../../include/linked_list_utils.h"
 
-void	**list_get_index_reference(t_list *l, size_t index)
+void	**list_get_index_reference(t_list *l, ssize_t index)
 {
 	t_elem	*e;
 
