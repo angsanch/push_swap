@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 {
 	t_ps	ps;
 
+	if (argc < 3)
+		end(NULL, 84);
 	initialize_ps(&ps);
 	if (!parse_input(&ps, argc, argv))
 		end(&ps, 84);
