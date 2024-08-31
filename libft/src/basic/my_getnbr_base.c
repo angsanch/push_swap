@@ -12,10 +12,10 @@
 
 #include "../../include/basic_utils.h"
 
-int	my_intlen_base(int nb, int base_len)
+size_t	my_intlen_base(long long nb, int base_len)
 {
-	unsigned int	n;
-	int				len;
+	unsigned long long	n;
+	size_t				len;
 
 	n = nb;
 	len = 0;

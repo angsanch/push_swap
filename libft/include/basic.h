@@ -18,14 +18,15 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <limits.h>
 
 char	*convert_base(char const *nbr,
 			char const *base_from, char const *base_to);
 char	*get_next_line(int fd);
 void	*my_calloc(size_t count, size_t size);
-int		my_intlen_base(int nb, int base_len);
+size_t	my_intlen_base(long long nb, int base_len);
 int		my_getnbr_base(char const *str, char const *base);
-int		my_intlen(int nb);
+size_t	my_intlen(long long nb);
 int		my_getnbr(char const *str);
 int		my_memcmp(const void *s1, const void *s2, size_t n);
 int		my_memchr_index(const void *m, int c, int len);

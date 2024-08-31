@@ -12,7 +12,7 @@
 
 #include "../../include/basic.h"
 
-int	my_intlen(int nb)
+size_t	my_intlen(long long nb)
 {
 	return (my_intlen_base(nb, 10));
 }

@@ -15,7 +15,9 @@
 static int	get_ps_num(char *str, long *num)
 {
 	*num = my_getnbr(str);
-	return (1);
+	if (*num > INT_MAX || *num < INT_MIN)
+		return (0);
+	return (my_strlen(str) == my_intlen(*num));
 }
 
 static int	to_list(t_list *list, char **array)
