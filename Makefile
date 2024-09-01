@@ -6,7 +6,7 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/07/30 16:13:07 by angsanch         ###   ########.fr        #
+#    Updated: 2024/09/02 00:58:51 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC=gcc
 
 CFLAGS=-Wall -Werror -Wextra
 
-C_FILES = src/main.c \
+C_FILES = src/end.c \
 			src/tools/ps.c \
 			src/tools/num.c \
 			src/parsing/input.c \
@@ -32,16 +32,25 @@ C_FILES = src/main.c \
 			src/operations/rotate.c \
 			src/operations/reverse_rotate.c \
 
+O_PS = src/main.o
+O_CHECKER = src/checker.o
+
 O_FILES = $(C_FILES:.c=.o)
 
 LIB = libft/libft.a
 
 NAME=push_swap
+BONUS=checker
 
-$(NAME): $(LIB) $(O_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(O_FILES) $(LIB)
+$(NAME): $(LIB) $(O_FILES) $(O_PS)
+	$(CC) $(CFLAGS) -o $(NAME) $(O_FILES) $(O_PS) $(LIB)
+
+checker: $(LIB) $(O_FILES) $(O_CHECKER)
+	$(CC) $(CFLAGS) -o $(BONUS) $(O_FILES) $(O_CHECKER) $(LIB)
 
 all: $(NAME)
+
+bonus: checker
 
 clean:
 	make -C libft clean

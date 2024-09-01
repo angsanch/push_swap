@@ -13,3 +13,4 @@ include/macros.h
 include/my_printf.h
 
 push_swap
+checker

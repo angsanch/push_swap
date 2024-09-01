@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/08/20 03:32:35 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 00:30:15 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ struct s_ksort_helper
 	size_t	index;
 	t_num	*num;	
 };
+
+void	end(t_ps *ps, int code);
 
 int		initialize_ps(t_ps *ps);
 void	delete_ps(t_ps *ps);
