@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:49:13 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/13 19:40:40 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 01:45:16 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct coolersplit_context
 	char		on_block;
 }	t_splited;
 
-void	*delete_t_splited(t_splited *spl, int delete_result);
-void	copy_without_quotations(char *dst, char const *src, size_t n);
+void			*delete_t_splited(t_splited *spl, int delete_result);
+void			copy_without_quotations(char *dst, char const *src, size_t n);
+t_file_buffer	*gnl_buffer_holder(void);
 
 #endif

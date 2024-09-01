@@ -6,7 +6,7 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:06 by angsanch          #+#    #+#              #
-#    Updated: 2024/07/11 20:43:36 by angsanch         ###   ########.fr        #
+#    Updated: 2024/09/02 01:47:27 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ BASIC_SOURCE = src/basic/my_strupcase.c \
 			src/basic/my_memchr.c \
 			src/basic/my_memmove.c \
 			src/basic/gnl.c \
+			src/basic/gnl_utils.c \
 			src/basic/my_revmem.c \
 			src/basic/report_error.c \
 			src/basic/my_strreplace.c \
