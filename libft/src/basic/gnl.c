@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angsanch <angsanch@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:46:16 by angsanch          #+#    #+#             */
-/*   Updated: 2024/06/13 18:46:16 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 04:31:44 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	read_until_end_line(int fd, t_file_buffer *f)
 		f->buff_len += readed;
 		if (my_memchr_index(f->buffer, '\n', f->buff_len) != -1)
 		{
-			free (buffer);
+			free(buffer);
 			return (1);
 		}
 	}
@@ -77,10 +77,13 @@ static char	*get_line(int fd, t_file_buffer *f)
 	if (read_until_end_line(fd, f) == 0)
 	{
 		free (f->buffer);
+		f->buffer = NULL;
 		f->buff_len = 0;
 		f->len = 0;
 		return (NULL);
 	}
+	if (f->buff_len == 0)
+		f->buffer = NULL;
 	extract_line(f);
 	return (f->line);
 }
