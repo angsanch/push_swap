@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 05:28:42 by angsanch          #+#    #+#             */
-/*   Updated: 2024/09/02 00:30:15 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 02:02:41 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ enum e_operations
 	RRR,
 };
 
-typedef unsigned long int	t_oper;
+typedef long int	t_oper;
 
 typedef struct pushswap_element
 {
