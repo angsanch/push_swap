@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 00:59:14 by angsanch          #+#    #+#             */
-/*   Updated: 2024/09/02 03:29:02 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 05:37:07 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_oper	get_operation(void)
 	o = 0;
 	input = get_next_line(0);
 	if (input == NULL)
-		return (-1);
+		return (0);
 	len = my_strlen(input);
 	if (input[len - 1] == '\n')
 		input[len - 1] = '\0';
@@ -47,8 +47,10 @@ static int	run_input(t_ps *ps, t_list *l)
 	while (o != NON)
 	{
 		o = get_operation();
-		if (o <= 0)
+		if (o < 0)
 			return (0);
+		if (o == 0)
+			break ;
 		if (!run_operation(ps, l, o))
 			return (0);
 	}
@@ -75,8 +77,8 @@ int	main(int argc, char **argv)
 {
 	t_ps	ps;
 
-	if (argc < 3)
-		end(NULL, 84);
+	if (argc < 2)
+		end(NULL, 0);
 	initialize_ps(&ps);
 	if (!parse_input(&ps, argc, argv))
 		end(&ps, 84);

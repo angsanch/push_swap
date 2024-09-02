@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 06:24:22 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/06 18:15:01 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 05:34:48 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_ps_num(char *str, long *num)
 	*num = my_getnbr(str);
 	if (*num > INT_MAX || *num < INT_MIN)
 		return (0);
-	return (my_strlen(str) == my_intlen(*num));
+	return (my_strlen(str) == my_intlen(*num) && str[0] != ' ');
 }
 
 static int	to_list(t_list *list, char **array)
@@ -27,6 +27,8 @@ static int	to_list(t_list *list, char **array)
 	t_num	*n;
 
 	i = get_pointer_array_len(array);
+	if (i == 0)
+		return (0);
 	while (i)
 	{
 		i --;
@@ -78,8 +80,6 @@ int	create_stack(t_ps *ps, char **array)
 {
 	if (!to_list(&ps->a, array))
 		return (0);
-	if (ps->a.len == 0)
-		return (1);
 	if (!add_indexes(&ps->a, ps))
 		return (0);
 	return (1);
