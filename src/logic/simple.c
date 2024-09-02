@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:17:24 by angsanch          #+#    #+#             */
-/*   Updated: 2024/07/17 15:18:19 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/02 05:48:06 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ static void	simple2(t_ps *ps, t_list *l)
 		run_operation(ps, l, SA);
 }
 
-static void	simple3(t_ps *ps, t_list *l)
+static void	prepare_indexes(t_ps *ps, unsigned long *indexes)
 {
 	unsigned long	values[3];
-	unsigned long	indexes[3];
 
 	values[0] = ((t_num *)list_get_index(&ps->a, 0))->index;
 	values[1] = ((t_num *)list_get_index(&ps->a, 1))->index;
@@ -33,6 +32,13 @@ static void	simple3(t_ps *ps, t_list *l)
 	indexes[0] = (values[0] > values[1]) + (values[0] > values[2]);
 	indexes[1] = (values[1] > values[0]) + (values[1] > values[2]);
 	indexes[2] = (values[2] > values[0]) + (values[2] > values[1]);
+}
+
+static void	simple3(t_ps *ps, t_list *l)
+{
+	unsigned long	indexes[3];
+
+	prepare_indexes(ps, indexes);
 	if (indexes[0] == 0 && indexes[1] == 2)
 	{
 		run_operation(ps, l, SA);
