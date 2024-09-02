@@ -6,7 +6,7 @@
 #    By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 18:29:24 by angsanch          #+#    #+#              #
-#    Updated: 2024/09/02 00:58:51 by angsanch         ###   ########.fr        #
+#    Updated: 2024/09/02 05:43:37 by angsanch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,11 +54,11 @@ bonus: checker
 
 clean:
 	make -C libft clean
-	rm -f $(O_FILES) test_$(NAME)
+	rm -f $(O_FILES) $(O_PS) $(O_CHECKER) test_$(NAME)
 
 fclean: clean
 	make -C libft fclean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS)
 
 $(LIB):
 	make -C libft
