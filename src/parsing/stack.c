@@ -6,7 +6,7 @@
 /*   By: angsanch <angsanch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 06:24:22 by angsanch          #+#    #+#             */
-/*   Updated: 2024/09/02 05:34:48 by angsanch         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:45:34 by angsanch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	get_ps_num(char *str, long *num)
 	*num = my_getnbr(str);
 	if (*num > INT_MAX || *num < INT_MIN)
 		return (0);
-	return (my_strlen(str) == my_intlen(*num) && str[0] != ' ');
+	return (my_strlen(str) == my_intlen(*num) && \
+		(my_isnumeric(str[0]) || str[0] == '-'));
 }
 
 static int	to_list(t_list *list, char **array)
